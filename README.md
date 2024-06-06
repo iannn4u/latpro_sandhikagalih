@@ -7,3 +7,4 @@
 - 2024-05-31 Make Website with Boostrap 3
 - 2024-05-31 Mini Game with Javascript
 - 2024-06-01 Whats Effect Paralax
+- 2024-06-06 CRUD Project with PHP
