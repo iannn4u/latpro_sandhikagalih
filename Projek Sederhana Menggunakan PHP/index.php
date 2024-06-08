@@ -1,18 +1,36 @@
 <?php
 require_once 'function.php';
-$students = query('SELECT * FROM students');
 
+$students = query('SELECT * FROM students');
+if(isset($_GET['id'])){
+  if(delete($_GET['id']) > 0) {
+    echo '<script>
+    alert("success delete data")
+    document.location.href = "index.php"
+    </script>';
+  } else {
+    echo '<script>
+    alert("error delete data")
+    document.location.href = "index.php"
+    </script>';
+  }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Page</title>
 </head>
+
 <body>
   <h1>List of Students</h1>
+
+  <a href="add.php">Add student</a>
+  <br>
 
   <table border="1" cellpadding="10" cellspacing="0">
     <thead>
@@ -26,7 +44,7 @@ $students = query('SELECT * FROM students');
     </thead>
     <tbody>
       <?php $iterration = 1; ?>
-      <?php foreach($students as $s) :?>
+      <?php foreach ($students as $s) : ?>
         <tr>
           <td><?= $iterration; ?></td>
           <td><img src="<?= $s['img_student'] ?>" alt="<?= $s['name_student'] ?>" width="50"></td>
@@ -35,13 +53,14 @@ $students = query('SELECT * FROM students');
           <td><?= $s['email_student'] ?></td>
           <td><?= $s['jurusan_student'] ?></td>
           <td>
-            <a href="">Edit</a>
-            <a href="">Delete</a>
+            <a href="edit.php?id=<?= $s['id_student'] ?>">Edit</a>
+            <a href="index.php?id=<?= $s['id_student'] ?>" onclick="return confirm('Are you seriuos to delete this data?')">Delete</a>
           </td>
         </tr>
-      <?php $iterration++; ?>
+        <?php $iterration++; ?>
       <?php endforeach; ?>
     </tbody>
   </table>
 </body>
+
 </html>
