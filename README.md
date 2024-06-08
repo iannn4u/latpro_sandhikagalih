@@ -1,4 +1,4 @@
-# Practice Project Youtube Sandhika Galih
+# Practice Project Youtube by Sandhika Galih
 
 ### Changelog
 - 2024-05-29 CSS Layouting
