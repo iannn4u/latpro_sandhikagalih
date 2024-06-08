@@ -15,6 +15,10 @@ if(isset($_GET['id'])){
     </script>';
   }
 }
+
+if(isset($_POST['cari'])) {
+  $students = search($_POST['keyword']);
+}
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +34,13 @@ if(isset($_GET['id'])){
   <h1>List of Students</h1>
 
   <a href="add.php">Add student</a>
+  <br><br>
+
+  <form action="" method="post">
+    <input type="search" name="keyword" size="40" autofocus placeholder="Input you want search..." autocomplete="off">
+    <button type="submit" name="cari">Search</button>
+  </form>
+
   <br>
 
   <table border="1" cellpadding="10" cellspacing="0">

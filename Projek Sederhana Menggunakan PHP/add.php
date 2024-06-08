@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
 <body>
   <h1>Add Student</h1>
 
-  <form action="" method="post">
+  <form action="" method="post" enctype="multipart/form-data">
     <ul>
       <li>
         <label for="nis_student">Input nis student:</label>
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
       </li>
       <li>
         <label for="img_student">Input image student:</label>
-        <input type="text" name="img_student" id="img_student" required>
+        <input type="file" name="img_student" id="img_student" required>
       </li>
       <li>
         <button type="submit" name="submit">Submit</button>

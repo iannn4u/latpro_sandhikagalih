@@ -29,8 +29,9 @@ if (isset($_POST['submit'])) {
 <body>
   <h1>Edit Student</h1>
 
-  <form action="" method="post">
+  <form action="" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id_student" value="<?= $student[0]['id_student'] ?>">
+    <input type="hidden" name="old_img" value="<?= $student[0]['img_student'] ?>">
     <ul>
       <li>
         <label for="nis_student">Input nis student:</label>
@@ -50,7 +51,8 @@ if (isset($_POST['submit'])) {
       </li>
       <li>
         <label for="img_student">Input image student:</label>
-        <input type="text" name="img_student" id="img_student" value="<?= $student[0]['img_student'] ?>" required>
+        <img src="<?= $student[0]['img_student'] ?>" alt="<?= $student[0]['name_student'] ?>" width="40">
+        <input type="file" name="img_student" id="img_student">
       </li>
       <li>
         <button type="submit" name="submit">Submit</button>
