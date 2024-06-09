@@ -1,5 +1,19 @@
 <?php
 require 'function.php';
+session_start();
+if (isset($_COOKIE['id'])&& isset($_COOKIE['key'])) {
+  $id = $_COOKIE['id'];
+  $key = $_COOKIE['key'];
+  $result = mysqli_query($conn, "SELECT username_users FROM users WHERE id_users = $id");
+  $row = mysqli_fetch_assoc($result);
+  if($key == hash('sha256', $row['username'])) {
+    $_SESSION['signin'] = true;
+  }
+}
+if (isset($_SESSION['signin'])) {
+  header('Location: index.php');
+  exit;
+}
 
 if (isset($_POST['signin'])) {
   $username = $_POST['username'];
@@ -9,6 +23,13 @@ if (isset($_POST['signin'])) {
   if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_assoc($result);
     if (password_verify($password, $row['password_users'])) {
+      $_SESSION['signin'] = true;
+
+      if (isset($_POST['remember'])) {
+        setcookie('id', $row['id_users'], time() + 60);
+        setcookie('key', hash('sha256', $row['username']), time() + 60);
+      }
+
       header("Location: index.php");
       exit;
     }
@@ -40,6 +61,10 @@ if (isset($_POST['signin'])) {
       <li>
         <label for="password">password :</label>
         <input type="password" name="password" id="password">
+      </li>
+      <li>
+        <input type="checkbox" name="remember" id="remember">
+        <label for="remember">remember me :</label>
       </li>
       <li>
         <button type="submit" name="signin">Signin</button>

@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['signin'])) {
+  header('Location: signin.php');
+  exit;
+}
 require 'function.php';
 
 $id = $_GET['id'];
