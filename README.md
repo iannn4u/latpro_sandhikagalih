@@ -8,3 +8,4 @@
 - 2024-05-31 Mini Game with Javascript
 - 2024-06-01 Whats Effect Paralax
 - 2024-06-06 CRUD Project with PHP
+- 2024-06-10 Mencoba Composer
