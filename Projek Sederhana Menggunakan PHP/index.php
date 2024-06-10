@@ -60,7 +60,7 @@ if (isset($_POST['cari'])) {
 </head>
 
 <body>
-  <a href="signout.php" class="print">Signout</a>
+  <a href="signout.php" class="print">Signout</a> | <a href="print.php" target="_blank">Cetak</a>
   <h1>List of Students</h1>
 
   <a href="add.php" class="print">Add student</a>
