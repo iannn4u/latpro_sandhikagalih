@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trying DOM</title>
+    <style>
+      body {
+        text-align: center;
+        height: 100vh;
+      }
+      .biru-muda {
+        background: lightblue;
+      }
+      .merah {
+        background: red;
+        width: 25px;
+        height: 25px;
+        margin: 10px auto;
+      }
+      .hijau {
+        background: green;
+        width: 25px;
+        height: 25px;
+        margin: 10px auto;
+      }
+      .biru {
+        background: blue;
+        width: 25px;
+        height: 25px;
+        margin: 10px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="text">Play with Color</h1>
+    <button class="button">Change Color</button>
+
+    <br><br>
+
+    <div class="merah"></div>
+    <input type="range" id="merah" min="0" max="100">
+    <div class="hijau"></div>
+    <input type="range" id="hijau" min="0" max="100">
+    <div class="biru"></div>
+    <input type="range" id="biru" min="0" max="100">
+    <script>
+      document.querySelector("button").addEventListener("click", () => {
+        document.querySelector("h1").style.color = "red";
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
