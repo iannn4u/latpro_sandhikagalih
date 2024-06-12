@@ -8,4 +8,8 @@
 - 2024-05-31 Mini Game with Javascript
 - 2024-06-01 Whats Effect Paralax
 - 2024-06-06 CRUD Project with PHP
-- 2024-06-10 Mencoba Composer
+- 2024-06-10 Trying Composer
+- 2024-06-10 Playing with Color
+- 2024-06-10 Suit Jawa V2.0
+- 2024-06-11 Popup Notifications
+- 2024-06-11 Makes Image Gallery
