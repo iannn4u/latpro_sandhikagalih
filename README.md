@@ -13,4 +13,5 @@
 - 2024-06-10 Suit Jawa V2.0
 - 2024-06-11 Popup Notifications
 - 2024-06-11 Makes Image Gallery
-- 2024-05-31 Make Website with Boostrap 4
+- 2024-06-12 Make Website with Boostrap 4
+- 2024-06-13 Make Website Company Profile with Materialize
