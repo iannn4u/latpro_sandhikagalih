@@ -1,5 +1,5 @@
 <?php
-class Product
+abstract class Product
 {
   private $judul, $penulis, $penerbit, $harga;
   protected $diskon = 0;
@@ -12,52 +12,64 @@ class Product
     $this->harga = $harga;
   }
 
-  public function setJudul($judul) {
+  public function setJudul($judul)
+  {
     $this->judul = $judul;
   }
 
-  public function getJudul() {
+  public function getJudul()
+  {
     return $this->judul;
   }
-  
-  public function setPenulis($penulis) {
+
+  public function setPenulis($penulis)
+  {
     $this->penulis = $penulis;
   }
 
-  public function getPenulis() {
+  public function getPenulis()
+  {
     return $this->penulis;
   }
-  
-  public function setPenerbit($penerbit) {
+
+  public function setPenerbit($penerbit)
+  {
     $this->penerbit = $penerbit;
   }
 
-  public function getPenerbit() {
+  public function getPenerbit()
+  {
     return $this->penerbit;
   }
-  
-  public function setHarga($harga) {
+
+  public function setHarga($harga)
+  {
     $this->harga = $harga;
   }
 
-  public function setDiskon($diskon) {
+  public function setDiskon($diskon)
+  {
     $this->diskon = $diskon;
   }
 
-  public function getDiskon() {
+  public function getDiskon()
+  {
     return $this->diskon;
   }
-  
-  public function getHarga() {
+
+  public function getHarga()
+  {
     return $this->harga - ($this->harga * $this->diskon / 100);
   }
-  
+
   public function getLabel()
   {
     return "$this->penulis, $this->penerbit";
   }
 
-  public function getInfoProduct()
+  abstract public function getInfoProduct();
+  
+  public function getInfo()
   {
     $str  = "{$this->judul} | {$this->getLabel()} | Rp. {$this->harga}";
     return $str;
@@ -67,20 +79,21 @@ class Product
 class Komik extends Product
 {
   public $jumlahHalaman;
-  
+
   public function __construct($judul = 'Judul', $penulis = 'Penulis', $penerbit = 'Penerbit', $harga = 'Harga', $jumlahHalaman = 0)
   {
     parent::__construct($judul, $penulis, $penerbit, $harga);
     $this->jumlahHalaman = $jumlahHalaman;
   }
 
-  public function getHarga() {
+  public function getHarga()
+  {
     return $this->getHarga() - ($this->getHarga() * $this->diskon / 100);
   }
-  
+
   public function getInfoProduct()
   {
-    $str  = "Komik | " . parent::getInfoProduct() . " - {$this->jumlahHalaman} Halaman.";
+    $str  = "Komik | " . $this->getInfo() . " - {$this->jumlahHalaman} Halaman.";
     return $str;
   }
 }
@@ -95,22 +108,35 @@ class Game extends Product
     $this->waktuMain = $waktuMain;
   }
 
-  public function getHarga() {
+  public function getHarga()
+  {
     return $this->getHarga() - ($this->getHarga() * $this->diskon / 100);
   }
-  
+
   public function getInfoProduct()
   {
-    $str  = "Game | " . parent::getInfoProduct() . " - {$this->waktuMain} Jam.";
+    $str  = "Game | " . $this->getInfo() . " - {$this->waktuMain} Jam.";
     return $str;
   }
 }
 
 class CetakInfoProduct
 {
+  public  $daftarProduct = array();
+
+  public function tambahProduct(Product $product)
+  {
+    $this->daftarProduct[] = $product;
+  }
+
   public function cetak(Product $product)
   {
-    $str = "{$product->getJudul()} | {$product->getLabel()} | Rp. {$product->getHarga()}";
+    $str = "DAFTAR PRODUCT : <br/>";
+
+    foreach ($this->daftarProduct as $p) {
+      $str .= "- {$p->getInfoProduct()} <br/>";
+    }
+    
     return $str;
   }
 }
@@ -120,9 +146,6 @@ $product1 = new Game('PHP Edisi Lengkap', 'Alandrian', 'Erlangga', 20000, 50);
 $product2 = new Komik('Laravel Basic', 'Surya', 'Erlangga', 'Harga', 100);
 $product2->setJudul('Laravel Basic 2015');
 
-$infoProduct = new CetakInfoProduct();
-echo $infoProduct->cetak($product1);
-
-$product1->setDiskon(50);
-echo '<br/>';
-echo $product1->getHarga();
+$cetakProduct =  new CetakInfoProduct();
+$cetakProduct->tambahProduct($product1);
+$cetakProduct->tambahProduct($product2);
